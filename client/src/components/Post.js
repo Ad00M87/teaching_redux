@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updatePost } from '../actions/posts';
+import { updatePost, deletePost } from '../actions/posts';
 
 class Post extends React.Component {
   state = {
@@ -55,7 +55,7 @@ class Post extends React.Component {
           <h3>{p.title}</h3>
           <p>{p.body}</p>
           <button onClick={this.toggleEdit}>Edit Post</button>
-          <button>Delete Post</button>
+          <button onClick={() => this.props.dispatch(deletePost(p.id))}>Delete Post</button>
         </div>
       )
     }

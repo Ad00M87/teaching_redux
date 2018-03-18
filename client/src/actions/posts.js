@@ -22,3 +22,10 @@ export const updatePost = (id, post) => dispatch => {
       dispatch({ type: 'UPDATE_POST', post: res.data })
     })
 }
+
+export const deletePost = (id) => dispatch => {
+  axios.delete(`/api/posts/${id}`)
+    .then( res => {
+      dispatch({ type: 'DELETE_POST', post: res.data })
+    })
+}

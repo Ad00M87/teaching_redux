@@ -5,11 +5,13 @@ const posts = (state = [], action) => {
     case 'ADD_POST':
       return [action.post, ...state];
     case 'UPDATE_POST':
-    return state.map( p => {
-      if (p.id === action.post.id)
-        return action.post
-      return p
-      });
+      return state.map( p => {
+        if (p.id === action.post.id)
+          return action.post
+        return p
+        });
+    case 'DELETE_POST':
+      return state.filter( p => p.id != action.post.id );
     default:
       return state;
   }
