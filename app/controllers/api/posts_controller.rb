@@ -9,6 +9,14 @@ class Api::PostsController < ApplicationController
   end
 
   def update
+    @post = Post.find(params[:id])
+
+    if @post.update(post_params)
+      render json: @post
+    else
+      message = "No update performed"
+      render json: message
+    end
   end
 
   def create
@@ -28,7 +36,7 @@ class Api::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :user_id)
+    params.require(:post).permit(:id, :title, :body, :user_id)
   end
 
 end

@@ -15,3 +15,10 @@ export const newPost = (post) => dispatch => {
       dispatch({ type: 'ADD_POST', post: res.data })
     })
 }
+
+export const updatePost = (post) => dispatch => {
+  axios.put(`/api/posts/${post.id}`, { post })
+    .then( res => {
+      dispatch({ type: 'UPDATE_POST', post: res.data })
+    })
+}

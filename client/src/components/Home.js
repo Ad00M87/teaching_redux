@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Header } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { getPosts, newPost } from '../actions/posts';
+import Post from './Post';
 
 class Home extends Component {
 
@@ -52,12 +53,7 @@ class Home extends Component {
         <div>
           { this.props.posts.map( p => {
             return(
-              <div>
-                <h3>{p.title}</h3>
-                <p>{p.body}</p>
-                <button>Edit Post</button>
-                <button>Delete Post</button>
-              </div>
+              <Post key={p.id} p={p} />
             )
           })}
         </div>
