@@ -21,12 +21,11 @@ class Post extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     let post = {
-      id: this.props.p.id,
       title: this.state.title,
       body: this.state.body,
-      user_id: this.props.p.id
+      user_id: this.props.p.user_id
     }
-    this.props.dispatch(updatePost(post))
+    this.props.dispatch(updatePost(this.props.p.id, post))
     this.setState({ editing: false })
   }
 

@@ -16,8 +16,8 @@ export const newPost = (post) => dispatch => {
     })
 }
 
-export const updatePost = (post) => dispatch => {
-  axios.put(`/api/posts/${post.id}`, { post })
+export const updatePost = (id, post) => dispatch => {
+  axios.put(`/api/posts/${id}`, { post })
     .then( res => {
       dispatch({ type: 'UPDATE_POST', post: res.data })
     })
