@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { updatePost, deletePost } from '../actions/posts';
+import { Card, Button } from 'semantic-ui-react';
 
 class Post extends React.Component {
   state = {
@@ -51,12 +52,23 @@ class Post extends React.Component {
       )
     } else {
       return(
-        <div>
-          <h3>{p.title}</h3>
-          <p>{p.body}</p>
-          <button onClick={this.toggleEdit}>Edit Post</button>
-          <button onClick={() => this.props.dispatch(deletePost(p.id))}>Delete Post</button>
-        </div>
+        <Card style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        }}>
+          <Card.Header>
+            {p.title}
+          </Card.Header>
+          <Card.Description>
+            {p.body}
+          </Card.Description>
+          <Card.Content extra>
+            <Button onClick={this.toggleEdit} color="blue">Edit Post</Button>
+            <Button onClick={() => this.props.dispatch(deletePost(p.id))} color="red">Delete Post</Button>
+          </Card.Content>
+        </Card>
       )
     }
   }

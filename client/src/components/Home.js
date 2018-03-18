@@ -3,6 +3,7 @@ import { Header } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { getPosts, newPost } from '../actions/posts';
 import Post from './Post';
+import { Card, Grid, Divider, Container } from 'semantic-ui-react';
 
 class Home extends Component {
 
@@ -33,7 +34,7 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
+      <Container>
         <Header>Welcome: {this.props.coolPerson.name}</Header>
         <div>
           <form onSubmit={this.handleSubmit}>
@@ -50,14 +51,15 @@ class Home extends Component {
             <button type="submit">Add Post</button>
           </form>
         </div>
-        <div>
+        <Divider />
+        <Card.Group>
           { this.props.posts.map( p => {
             return(
               <Post key={p.id} p={p} />
             )
           })}
-        </div>
-      </div>
+        </Card.Group>
+      </Container>
     );
   }
 }
