@@ -1,13 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { updatePost, deletePost } from '../actions/posts';
-import { Card, Button } from 'semantic-ui-react';
+import { Card, Button, Icon, Label } from 'semantic-ui-react';
 
 class Post extends React.Component {
   state = {
     editing: false,
     title: this.props.p.title,
     body: this.props.p.body,
+    likes: 0,
+    dislikes: 0,
+  }
+
+  increment = (type) => {
+    if (type == 'likes') {
+      this.setState({ [type]: this.state.likes + 1 })
+    } else {
+      this.setState({ [type]: this.state.dislikes + 1 })
+    }
   }
 
   toggleEdit = () => {
@@ -68,6 +78,22 @@ class Post extends React.Component {
           <Card.Content extra>
             <Button onClick={this.toggleEdit} color="blue">Edit Post</Button>
             <Button onClick={() => this.props.dispatch(deletePost(p.id))} color="red">Delete Post</Button>
+          </Card.Content>
+          <Card.Content extra>
+            <Button as='div' labelPosition='right' onClick={() => this.increment("likes")}>
+              <Button icon>
+                <Icon name='thumbs outline up' />
+                Like
+              </Button>
+              <Label as='a' basic pointing='left'>{this.state.likes}</Label>
+            </Button>
+            <Button as='div' labelPosition='right' onClick={() => this.increment("dislikes")}>
+              <Button icon>
+                <Icon name='thumbs outline down' />
+                Dislike
+              </Button>
+              <Label as='a' basic pointing='left'>{this.state.dislikes}</Label>
+            </Button>
           </Card.Content>
         </Card>
       )
