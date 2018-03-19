@@ -3,7 +3,14 @@ import { Header } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { getPosts, newPost } from '../actions/posts';
 import Post from './Post';
-import { Card, Grid, Divider, Container } from 'semantic-ui-react';
+import {
+  Card,
+  Grid,
+  Divider,
+  Container,
+  Form,
+  Button,
+} from 'semantic-ui-react';
 
 class Home extends Component {
 
@@ -35,21 +42,31 @@ class Home extends Component {
   render() {
     return (
       <Container>
-        <Header>Welcome: {this.props.coolPerson.name}</Header>
+        <Divider hidden />
+        <Header textAlign="center">Welcome: {this.props.coolPerson.name}</Header>
+        <Divider />
         <div>
-          <form onSubmit={this.handleSubmit}>
-            <input
-              name="title"
-              onChange={this.handleChange}
-              value={this.state.title}
-            />
-            <input
-              name="body"
-              onChange={this.handleChange}
-              value={this.state.body}
-            />
-            <button type="submit">Add Post</button>
-          </form>
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Group widths="equal">
+              <Form.Field>
+                <label>Title</label>
+                <input
+                  name="title"
+                  onChange={this.handleChange}
+                  value={this.state.title}
+                />
+              </Form.Field>
+              <Form.Field>
+                <label>Body</label>
+                <input
+                  name="body"
+                  onChange={this.handleChange}
+                  value={this.state.body}
+                />
+              </Form.Field>
+            </Form.Group>
+            <Button type="submit">Add Post</Button>
+          </Form>
         </div>
         <Divider />
         <Card.Group>
