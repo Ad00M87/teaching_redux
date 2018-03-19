@@ -56,7 +56,8 @@ class Post extends React.Component {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          alignItems: 'center'
+          alignItems: 'center',
+          padding: '5px',
         }}>
           <Card.Header>
             {p.title}
